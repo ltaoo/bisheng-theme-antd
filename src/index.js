@@ -29,6 +29,7 @@ module.exports = {
     // 会在传给页面组件的 props 上增加 components 字段
     components(markdownData) {
       const { filename } = markdownData.meta;
+      console.log('filename', filename, markdownData);
       if (!/^components/.test(filename) || /[/\\]demo$/.test(path.dirname(filename))) {
         return null;
       }

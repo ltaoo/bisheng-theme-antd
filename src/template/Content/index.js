@@ -10,8 +10,8 @@ export default collect(async (nextProps) => {
   const pageDataPath = pathname.replace('-cn', '').split('/');
   // get 方法来自 https://github.com/benjycui/exist.js
   // 会根据访问的路径结构，去获取相同的文件夹结构
-  const pageData = nextProps.utils.get(nextProps.data, pageDataPath);
-  console.log(pageData, pageDataPath, nextProps.data);
+  const pageData = nextProps.utils.get({ components: nextProps.data }, pageDataPath);
+  console.log('=-----', pageData, pageDataPath, nextProps.data);
   if (!pageData) {
     throw 404; // eslint-disable-line no-throw-literal
   }
@@ -21,7 +21,7 @@ export default collect(async (nextProps) => {
   // const pageDataPromise = typeof pageData === 'function'
   //   ? pageData()
   //   : (pageData[locale] || pageData.index[locale] || pageData.index)();
-  const pageDataPromise = pageData;
+  const pageDataPromise = pageData.index || pageData;
   // const demosFetcher = nextProps.utils.get(nextProps.data, [...pageDataPath, 'demo']);
   // if (demosFetcher) {
   //   const [localizedPageData, demos] = await Promise.all([pageDataPromise, demosFetcher()]);

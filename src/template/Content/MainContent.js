@@ -7,7 +7,7 @@ import get from 'lodash/get';
 import MobileMenu from 'rc-drawer';
 
 import Article from './Article';
-// import PrevAndNext from './PrevAndNext';
+import PrevAndNext from './PrevAndNext';
 // import Footer from '../Layout/Footer';
 // import ComponentDoc from './ComponentDoc';
 import * as utils from '../utils';
@@ -30,6 +30,7 @@ function getModuleData(props) {
         .filter(item => item)
         .slice(0, 2)
         .join('/');
+  console.log('module name', moduleName, props.picked);
   const moduleData =
     moduleName === 'components' ||
     moduleName === 'docs/react'
@@ -127,6 +128,7 @@ export default class MainContent extends Component {
       themeConfig.categoryOrder,
       themeConfig.typeOrder,
     );
+    console.log(menuItems);
     return menuItems.map(menuItem => {
       if (menuItem.children) {
         return (
@@ -297,7 +299,7 @@ export default class MainContent extends Component {
               )} */}
               <Article {...props} content={localizedPageData} />
             </section>
-            {/* <PrevAndNext prev={prev} next={next} /> */}
+            <PrevAndNext prev={prev} next={next} />
             {/* <Footer /> */}
           </Col>
         </Row>
