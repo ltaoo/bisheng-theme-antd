@@ -25,29 +25,30 @@ module.exports = {
   //   }
   //   return nodePath.endsWith('/demo');
   // },
-  // pick: {
-  //   components(markdownData) {
-  //     const { filename } = markdownData.meta;
-  //     if (!/^components/.test(filename) || /[/\\]demo$/.test(path.dirname(filename))) {
-  //       return null;
-  //     }
-  //     return {
-  //       meta: markdownData.meta,
-  //     };
-  //   },
-  //   changelog(markdownData) {
-  //     if (/CHANGELOG/.test(markdownData.meta.filename)) {
-  //       return {
-  //         meta: markdownData.meta,
-  //       };
-  //     }
-  //     return null;
-  //   },
-  //   'docs/pattern': pickerGenerator('pattern'),
-  //   'docs/react': pickerGenerator('react'),
-  //   'docs/resource': pickerGenerator('resource'),
-  //   'docs/spec': pickerGenerator('spec'),
-  // },
+  pick: {
+    // 会在传给页面组件的 props 上增加 components 字段
+    components(markdownData) {
+      const { filename } = markdownData.meta;
+      if (!/^components/.test(filename) || /[/\\]demo$/.test(path.dirname(filename))) {
+        return null;
+      }
+      return {
+        meta: markdownData.meta,
+      };
+    },
+    // changelog(markdownData) {
+    //   if (/CHANGELOG/.test(markdownData.meta.filename)) {
+    //     return {
+    //       meta: markdownData.meta,
+    //     };
+    //   }
+    //   return null;
+    // },
+    // 'docs/pattern': pickerGenerator('pattern'),
+    // 'docs/react': pickerGenerator('react'),
+    // 'docs/resource': pickerGenerator('resource'),
+    // 'docs/spec': pickerGenerator('spec'),
+  },
   // plugins: [
   //   'bisheng-plugin-description',
   //   'bisheng-plugin-toc?maxDepth=2&keepElem',
@@ -75,16 +76,16 @@ module.exports = {
         path: 'docs/react/:children',
         component: contentTmpl,
       },
-      {
-        path: 'changelog',
-        component: contentTmpl,
-      },
+      // {
+      //   path: 'changelog',
+      //   component: contentTmpl,
+      // },
       // {
       //   path: 'changelog-cn',
       //   component: contentTmpl,
       // },
       {
-        path: 'components/:children/',
+        path: 'components/:children',
         component: contentTmpl,
       },
       // {
