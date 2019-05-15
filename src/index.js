@@ -1,7 +1,7 @@
 const path = require('path');
 
 const homeTmpl = './template/Home/index';
-// const contentTmpl = './template/Content/index';
+const contentTmpl = './template/Content/index';
 // const redirectTmpl = './template/Redirect';
 // const appShellTmpl = './template/AppShell';
 
@@ -71,22 +71,22 @@ module.exports = {
       //   path: 'docs/pattern/:children',
       //   component: redirectTmpl,
       // },
-      // {
-      //   path: 'docs/react/:children',
-      //   component: contentTmpl,
-      // },
-      // {
-      //   path: 'changelog',
-      //   component: contentTmpl,
-      // },
+      {
+        path: 'docs/react/:children',
+        component: contentTmpl,
+      },
+      {
+        path: 'changelog',
+        component: contentTmpl,
+      },
       // {
       //   path: 'changelog-cn',
       //   component: contentTmpl,
       // },
-      // {
-      //   path: 'components/:children/',
-      //   component: contentTmpl,
-      // },
+      {
+        path: 'components/:children/',
+        component: contentTmpl,
+      },
       // {
       //   path: 'docs/spec/feature',
       //   component: redirectTmpl,

@@ -2,6 +2,7 @@ import React from 'react';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import 'moment/locale/zh-cn';
 import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'antd/dist/antd.css';
 
 import Header from './Header';
