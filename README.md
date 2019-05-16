@@ -1,6 +1,8 @@
-# 使用 bisheng 记录
+# bisheng-theme-antd
 
-## 使用 bisheng-theme-antd
+将 [ant-design](https://github.com/ant-design/ant-design) 中相关代码拷贝出来，可以直接在其他项目中使用。
+
+## Usage
 
 其实更推荐的做法是将`bisheng-theme-antd`拷贝到本地`theme`文件夹。在使用`bisheng-theme-antd`（后面简称`theme`）前，有一些强制约定需要遵守。
 
@@ -70,6 +72,13 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 
 - bisheng-plugin-antd
 - bisheng-plugin-react
+
+## 一些说明
+
+### Header
+
+网站顶部，对应组件`template/Layout/Header`。
+右侧的四个菜单跳转路径是写死在这个文件内。
 
 ## 问题
 

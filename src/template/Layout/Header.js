@@ -41,13 +41,6 @@ export default class Header extends React.Component {
     this.state = {
       menuVisible: false,
     };
-
-    this.handleShowMenu = this.handleShowMenu.bind(this);
-    this.handleHideMenu = this.handleHideMenu.bind(this);
-    this.onMenuVisibleChange = this.onMenuVisibleChange.bind(this);
-    this.handleLangChange = this.handleLangChange.bind(this);
-    this.handleVersionChange = this.handleVersionChange.bind(this);
-    this.handleLangChange = this.handleLangChange.bind(this);
   }
 
   componentDidMount() {
@@ -62,19 +55,19 @@ export default class Header extends React.Component {
     initDocSearch(intl.locale);
   }
 
-  onMenuVisibleChange(visible) {
+  onMenuVisibleChange = (visible)  => {
     this.setState({
       menuVisible: visible,
     });
   }
 
-  handleHideMenu() {
+  handleHideMenu = () => {
     this.setState({
       menuVisible: false,
     });
   }
 
-  handleShowMenu() {
+  handleShowMenu = () => {
     this.setState({
       menuVisible: true,
     });
@@ -83,7 +76,7 @@ export default class Header extends React.Component {
   /**
    * 切换版本
    */
-  handleVersionChange(url) {
+  handleVersionChange = (url) => {
     const currentUrl = window.location.href;
     const currentPathname = window.location.pathname;
     window.location.href = currentUrl
@@ -94,7 +87,7 @@ export default class Header extends React.Component {
   /**
    * 改变语言
    */
-  handleLangChange() {
+  handleLangChange = () => {
     const {
       location: { pathname },
     } = this.props;
@@ -183,54 +176,6 @@ export default class Header extends React.Component {
             <FormattedMessage id="app.header.menu.components" />
           </Link>
         </Menu.Item>
-        <Menu.SubMenu
-          key="ecosystem"
-          className="hide-in-home-page"
-          title={<FormattedMessage id="app.header.menu.ecosystem" />}
-        >
-          <Menu.Item key="pro">
-            <a
-              href="http://pro.ant.design"
-              className="header-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FormattedMessage id="app.header.menu.pro" />
-            </a>
-          </Menu.Item>
-          <Menu.Item key="ng">
-            <a
-              href="http://ng.ant.design"
-              className="header-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ant Design of Angular
-            </a>
-          </Menu.Item>
-          <Menu.Item key="vue">
-            <a
-              href="http://vue.ant.design"
-              className="header-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ant Design of Vue
-            </a>
-          </Menu.Item>
-          {isZhCN ? (
-            <Menu.Item key="course" className="hide-in-home-page">
-              <a
-                href="https://www.yuque.com/ant-design/course"
-                className="header-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ant Design 实战教程
-              </a>
-            </Menu.Item>
-          ) : null}
-        </Menu.SubMenu>
       </Menu>,
     ];
 
