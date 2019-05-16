@@ -77,8 +77,69 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 
 ### Header
 
-网站顶部，对应组件`template/Layout/Header`。
-右侧的四个菜单跳转路径是写死在这个文件内。
+网站顶部，对应组件`template/Layout/Header`。右侧菜单跳转路径是写死在这个文件内。
+
+## bisheng 使用记录
+
+### source
+
+`source`支持字符串与对象，如果是字符串，比如`./components`，并且有如下文件夹：
+
+```js
+components
+├── button
+│   ├── demo
+│   │   └── basic.md
+│   └── index.md
+├── form
+│   └── index.md
+└── input
+    └── index.md
+```
+
+那么生成的`markdownData`就是：
+
+```js
+{
+  button: {
+    // ...
+  },
+  form: {
+    // ...
+  },
+  input: {
+    // ...
+  },
+}
+```
+
+如果是对象，配置为：
+
+```js
+source: {
+  components: './components',
+},
+```
+
+同样的文件夹，生成的`markdownData`变成了：
+
+```js
+{
+  components: {
+    button: {
+      // ...
+    },
+    form: {
+      // ...
+    },
+    input: {
+      // ...
+    },
+  },
+}
+```
+
+这个`markdownData`是在匹配到路由时，用路由去匹配这个数据的，从而获取到`md`文件内容。
 
 ## 问题
 

@@ -5,18 +5,18 @@ const contentTmpl = './template/Content/index';
 // const redirectTmpl = './template/Redirect';
 // const appShellTmpl = './template/AppShell';
 
-// function pickerGenerator(module) {
-//   const tester = new RegExp(`^docs/${module}`);
-//   return markdownData => {
-//     const { filename } = markdownData.meta;
-//     if (tester.test(filename) && !/\/demo$/.test(path.dirname(filename))) {
-//       return {
-//         meta: markdownData.meta,
-//       };
-//     }
-//     return null;
-//   };
-// }
+function pickerGenerator(module) {
+  const tester = new RegExp(`^docs/${module}`);
+  return (markdownData) => {
+    const { filename } = markdownData.meta;
+    if (tester.test(filename) && !/\/demo$/.test(path.dirname(filename))) {
+      return {
+        meta: markdownData.meta,
+      };
+    }
+    return null;
+  };
+}
 
 module.exports = {
   // 加上这个，返回的 markdown 数据就会变成懒加载函数，访问页面时调用函数加载 markdown 数据
@@ -47,7 +47,7 @@ module.exports = {
     //   return null;
     // },
     // 'docs/pattern': pickerGenerator('pattern'),
-    // 'docs/react': pickerGenerator('react'),
+    'docs/react': pickerGenerator('react'),
     // 'docs/resource': pickerGenerator('resource'),
     // 'docs/spec': pickerGenerator('spec'),
   },
