@@ -6,33 +6,33 @@ import classNames from 'classnames';
 import {
   Select, Menu, Row, Col, Icon, Popover, Input, Button,
 } from 'antd';
-import docsearch from 'docsearch.js';
+// import docsearch from 'docsearch.js';
 
 import { antdVersion, logoImg, logoTitle, logoTitleImg } from '../../constants';
 import * as utils from '../utils';
 
 const { Option } = Select;
 
-function initDocSearch(locale) {
-  if (!docsearch) {
-    return;
-  }
-  const lang = locale === 'zh-CN' ? 'cn' : 'en';
-  docsearch({
-    apiKey: '60ac2c1a7d26ab713757e4a081e133d0',
-    indexName: 'ant_design',
-    inputSelector: '#search-box input',
-    algoliaOptions: { facetFilters: [`tags:${lang}`] },
-    transformData(hits) {
-      hits.forEach((hit) => {
-        hit.url = hit.url.replace('ant.design', window.location.host); // eslint-disable-line
-        hit.url = hit.url.replace('https:', window.location.protocol); // eslint-disable-line
-      });
-      return hits;
-    },
-    debug: false, // Set debug to true if you want to inspect the dropdown
-  });
-}
+// function initDocSearch(locale) {
+//   if (!docsearch) {
+//     return;
+//   }
+//   const lang = locale === 'zh-CN' ? 'cn' : 'en';
+//   docsearch({
+//     apiKey: '60ac2c1a7d26ab713757e4a081e133d0',
+//     indexName: 'ant_design',
+//     inputSelector: '#search-box input',
+//     algoliaOptions: { facetFilters: [`tags:${lang}`] },
+//     transformData(hits) {
+//       hits.forEach((hit) => {
+//         hit.url = hit.url.replace('ant.design', window.location.host); // eslint-disable-line
+//         hit.url = hit.url.replace('https:', window.location.protocol); // eslint-disable-line
+//       });
+//       return hits;
+//     },
+//     debug: false, // Set debug to true if you want to inspect the dropdown
+//   });
+// }
 
 export default class Header extends React.Component {
   static contextTypes = {
@@ -51,13 +51,13 @@ export default class Header extends React.Component {
   componentDidMount() {
     const { intl, router } = this.context;
     router.listen(this.handleHideMenu);
-    const { searchInput } = this;
-    document.addEventListener('keyup', (event) => {
-      if (event.keyCode === 83 && event.target === document.body) {
-        searchInput.focus();
-      }
-    });
-    initDocSearch(intl.locale);
+    // const { searchInput } = this;
+    // document.addEventListener('keyup', (event) => {
+    //   if (event.keyCode === 83 && event.target === document.body) {
+    //     searchInput.focus();
+    //   }
+    // });
+    // initDocSearch(intl.locale);
   }
 
   onMenuVisibleChange = (visible)  => {
@@ -187,7 +187,7 @@ export default class Header extends React.Component {
             </Link>
           </Col>
           <Col xxl={20} xl={19} lg={19} md={19} sm={0} xs={0}>
-            <div id="search-box">
+            {/* <div id="search-box">
               <Icon type="search" />
               <Input
                 ref={(ref) => {
@@ -195,7 +195,7 @@ export default class Header extends React.Component {
                 }}
                 placeholder={searchPlaceholder}
               />
-            </div>
+            </div> */}
             {menu}
           </Col>
         </Row>

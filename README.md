@@ -90,7 +90,15 @@ title: Ant Design of React
 ### 首页
 
 即`ant.design`的首页，如果作为内部组件库，大部分情况可能都不需要这样一个展示页，所以去掉了。
-如果需要增加类似首页，
+如果需要增加类似首页，只需要修改`Home/index.js`即可。
+
+> `ant.design`首页的内容都是写在组件内的，不是通过`markdown`渲染出来。
+
+### 文档页
+
+可以放一些项目说明。
+
+### Changelog
 
 ## bisheng 使用记录
 
