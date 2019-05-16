@@ -87,6 +87,11 @@ title: Ant Design of React
 ---
 ```
 
+### 首页
+
+即`ant.design`的首页，如果作为内部组件库，大部分情况可能都不需要这样一个展示页，所以去掉了。
+如果需要增加类似首页，
+
 ## bisheng 使用记录
 
 ### source

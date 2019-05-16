@@ -150,11 +150,11 @@ export default class Header extends React.Component {
         id="nav"
         key="nav"
       >
-        <Menu.Item key="home" className="hide-in-home-page">
+        {/* <Menu.Item key="home" className="hide-in-home-page">
           <Link to={utils.getLocalizedPathname('/', isZhCN)}>
             <FormattedMessage id="app.header.menu.home" />
           </Link>
-        </Menu.Item>
+        </Menu.Item> */}
         {/* <Menu.Item key="docs/spec">
           <Link to={utils.getLocalizedPathname('/docs/spec/introduce', isZhCN)}>
             <FormattedMessage id="app.header.menu.spec" />
