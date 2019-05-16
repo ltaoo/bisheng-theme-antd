@@ -10,7 +10,7 @@ export default collect(async (nextProps) => {
   const pageDataPath = pathname.replace('-cn', '').split('/');
   // get 方法来自 https://github.com/benjycui/exist.js
   // 会根据访问的路径结构，去获取相同的文件夹结构
-  const data = { components: nextProps.data };
+  const { data } = nextProps;
   const pageData = nextProps.utils.get(data, pageDataPath);
   if (!pageData) {
     throw 404; // eslint-disable-line no-throw-literal

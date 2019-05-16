@@ -67,6 +67,12 @@ export function isZhCN(pathname) {
   return /-cn\/?$/.test(pathname);
 }
 
+/**
+ * 将传入的路径增加语言后缀比如 button 变成 button-cn
+ * @param {Url} path - 路径
+ * @param {boolean} zhCN - 是否为中文
+ * @return {string}
+ */
 export function getLocalizedPathname(path, zhCN) {
   const pathname = path.startsWith('/') ? path : `/${path}`;
   if (!zhCN) {

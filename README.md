@@ -78,6 +78,14 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 ### Header
 
 网站顶部，对应组件`template/Layout/Header`。右侧菜单跳转路径是写死在这个文件内。
+「组件」按钮，打开的是`docs/react/introduce.zh-CN.md`这个文件，所以如果需要「组件」按钮，这个文件必须存在，且内容包含：
+
+```js
+---
+order: 0
+title: Ant Design of React
+---
+```
 
 ## bisheng 使用记录
 
