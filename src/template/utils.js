@@ -1,3 +1,21 @@
+/**
+ * MarkdownData : {
+ *  meta: {
+ *    category,
+ *    type,
+ *    title,
+ *    subtitle,
+ *    filename,
+ *  }
+ * }
+ */
+/**
+ * 生成侧边菜单
+ * @param {Array<MarkdownData>} moduleData - 组件数据
+ * @param {string} locale - zh-CN | en-US
+ * @param {Object} categoryOrder - 分类及顺序，即 bisheng.config.js 中的 categoryOrder
+ * @param {Object} typeOrder - 组件分类及顺序，即 bisheng.config.js 中的 typeOrder
+ */
 export function getMenuItems(moduleData, locale, categoryOrder, typeOrder) {
   const menuMeta = moduleData.map(item => item.meta);
   const menuItems = [];

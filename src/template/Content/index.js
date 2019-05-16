@@ -12,11 +12,9 @@ export default collect(async (nextProps) => {
   // 会根据访问的路径结构，去获取相同的文件夹结构
   const data = { components: nextProps.data };
   const pageData = nextProps.utils.get(data, pageDataPath);
-  console.log(pageData, pageDataPath, nextProps.data);
   if (!pageData) {
     throw 404; // eslint-disable-line no-throw-literal
   }
-
   // const locale = utils.isZhCN(pathname) ? 'zh-CN' : 'en-US';
   const locale = 'zh-CN';
   const pageDataPromise = typeof pageData === 'function'
@@ -26,7 +24,6 @@ export default collect(async (nextProps) => {
   // 尝试读取 demo 文件夹
   // 由于 babel 只能在服务端运行，所以通过插件来完成
   const demosFetcher = nextProps.utils.get(data, [...pageDataPath, 'demo']);
-  console.log(demosFetcher);
   if (demosFetcher) {
     const [localizedPageData, demos] = await Promise.all([pageDataPromise, demosFetcher()]);
     return { localizedPageData, demos };

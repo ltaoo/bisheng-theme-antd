@@ -281,7 +281,6 @@ export default class MainContent extends Component {
         {menuItems}
       </Menu>
     );
-    console.log('hello', '----', props.demos);
     return (
       <div className="main-wrapper">
         <Row>
