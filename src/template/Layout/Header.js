@@ -8,7 +8,7 @@ import {
 } from 'antd';
 import docsearch from 'docsearch.js';
 
-import { antdVersion } from '../../constants';
+import { antdVersion, logoImg, logoTitle, logoTitleImg } from '../../constants';
 import * as utils from '../utils';
 
 const { Option } = Select;
@@ -35,6 +35,11 @@ function initDocSearch(locale) {
 }
 
 export default class Header extends React.Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -107,14 +112,9 @@ export default class Header extends React.Component {
 
   render() {
     const { menuVisible } = this.state;
-    const menuMode = 'horizontal';
     const { location, themeConfig } = this.props;
-    const docVersions = { ...themeConfig.docVersions, [antdVersion]: antdVersion };
-    const versionOptions = Object.keys(docVersions).map(version => (
-      <Option value={docVersions[version]} key={version}>
-        {version}
-      </Option>
-    ));
+
+    const menuMode = 'horizontal';
     const module = location.pathname
       .replace(/(^\/|\/$)/g, '')
       .split('/')
@@ -143,17 +143,6 @@ export default class Header extends React.Component {
       >
         <FormattedMessage id="app.header.lang" />
       </Button>,
-      <Select
-        key="version"
-        className="version"
-        size="small"
-        dropdownMatchSelectWidth={false}
-        defaultValue={antdVersion}
-        onChange={this.handleVersionChange}
-        getPopupContainer={trigger => trigger.parentNode}
-      >
-        {versionOptions}
-      </Select>,
       <Menu
         className="menu-site"
         mode={menuMode}
@@ -166,11 +155,11 @@ export default class Header extends React.Component {
             <FormattedMessage id="app.header.menu.home" />
           </Link>
         </Menu.Item>
-        <Menu.Item key="docs/spec">
+        {/* <Menu.Item key="docs/spec">
           <Link to={utils.getLocalizedPathname('/docs/spec/introduce', isZhCN)}>
             <FormattedMessage id="app.header.menu.spec" />
           </Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="docs/react">
           <Link to={utils.getLocalizedPathname('/docs/react/introduce', isZhCN)}>
             <FormattedMessage id="app.header.menu.components" />
@@ -179,7 +168,8 @@ export default class Header extends React.Component {
       </Menu>,
     ];
 
-    const searchPlaceholder = locale === 'zh-CN' ? '在 ant.design 中搜索' : 'Search in ant.design';
+    // @TODO: 支持多语言
+    const searchPlaceholder = locale === 'zh-CN' ? '搜索' : 'Search';
     return (
       <header id="header" className={headerClassName}>
         <Row>
@@ -187,11 +177,11 @@ export default class Header extends React.Component {
             <Link to={utils.getLocalizedPathname('/', isZhCN)} id="logo">
               <img
                 alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+                src={logoImg}
               />
               <img
-                alt="Ant Design"
-                src="https://gw.alipayobjects.com/zos/rmsportal/DkKNubTaaVsKURhcVGkh.svg"
+                alt={logoTitle}
+                src={logoTitleImg}
               />
               {/* <Santa /> */}
             </Link>
@@ -213,8 +203,3 @@ export default class Header extends React.Component {
     );
   }
 }
-
-Header.contextTypes = {
-  router: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired,
-};
