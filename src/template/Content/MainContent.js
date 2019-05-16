@@ -9,7 +9,7 @@ import MobileMenu from 'rc-drawer';
 import Article from './Article';
 import PrevAndNext from './PrevAndNext';
 // import Footer from '../Layout/Footer';
-// import ComponentDoc from './ComponentDoc';
+import ComponentDoc from './ComponentDoc';
 import * as utils from '../utils';
 
 const { SubMenu } = Menu;
@@ -30,7 +30,6 @@ function getModuleData(props) {
         .filter(item => item)
         .slice(0, 2)
         .join('/');
-  console.log('module name', moduleName, props.picked);
   const moduleData =
     moduleName === 'components' ||
     moduleName === 'docs/react'
@@ -128,7 +127,6 @@ export default class MainContent extends Component {
       themeConfig.categoryOrder,
       themeConfig.typeOrder,
     );
-    console.log(menuItems);
     return menuItems.map(menuItem => {
       if (menuItem.children) {
         return (
@@ -283,6 +281,7 @@ export default class MainContent extends Component {
         {menuItems}
       </Menu>
     );
+    console.log('hello', '----', props.demos);
     return (
       <div className="main-wrapper">
         <Row>
@@ -293,11 +292,11 @@ export default class MainContent extends Component {
           </Col>
           <Col xxl={20} xl={19} lg={18} md={24} sm={24} xs={24}>
             <section className={mainContainerClass}>
-              {/* {props.demos ? (
+              {props.demos ? (
                 <ComponentDoc {...props} doc={localizedPageData} demos={props.demos} />
               ) : (
-              )} */}
-              <Article {...props} content={localizedPageData} />
+                <Article {...props} content={localizedPageData} />
+              )}
             </section>
             <PrevAndNext prev={prev} next={next} />
             {/* <Footer /> */}

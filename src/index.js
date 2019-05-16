@@ -19,17 +19,18 @@ const contentTmpl = './template/Content/index';
 // }
 
 module.exports = {
-  // lazyLoad(nodePath, nodeValue) {
-  //   if (typeof nodeValue === 'string') {
-  //     return true;
-  //   }
-  //   return nodePath.endsWith('/demo');
-  // },
+  // 加上这个，返回的 demo、index 就会变成懒加载函数
+  lazyLoad(nodePath, nodeValue) {
+    if (typeof nodeValue === 'string') {
+      return true;
+    }
+    return nodePath.endsWith('/demo');
+  },
+  // 在 node 执行
   pick: {
     // 会在传给页面组件的 props 上增加 components 字段
     components(markdownData) {
       const { filename } = markdownData.meta;
-      console.log('filename', filename, markdownData);
       if (!/^components/.test(filename) || /[/\\]demo$/.test(path.dirname(filename))) {
         return null;
       }
@@ -50,12 +51,12 @@ module.exports = {
     // 'docs/resource': pickerGenerator('resource'),
     // 'docs/spec': pickerGenerator('spec'),
   },
-  // plugins: [
-  //   'bisheng-plugin-description',
-  //   'bisheng-plugin-toc?maxDepth=2&keepElem',
-  //   'bisheng-plugin-antd?injectProvider',
-  //   'bisheng-plugin-react?lang=__react',
-  // ],
+  plugins: [
+    'bisheng-plugin-description',
+    'bisheng-plugin-toc?maxDepth=2&keepElem',
+    'bisheng-plugin-antd?injectProvider',
+    'bisheng-plugin-react?lang=__react',
+  ],
   routes: {
     path: '/',
     component: './template/Layout/index',

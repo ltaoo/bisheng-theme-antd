@@ -36,5 +36,9 @@
     "react-github-button": "^0.1.11",
     "react-intl": "^2.8.0",
     "scrollama": "^2.0.0"
+  },
+  "dependencies": {
+    "bisheng-plugin-antd": "^1.0.1",
+    "bisheng-plugin-react": "^1.0.0"
   }
 }
