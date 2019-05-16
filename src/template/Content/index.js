@@ -15,12 +15,10 @@ export default collect(async (nextProps) => {
   if (!pageData) {
     throw 404; // eslint-disable-line no-throw-literal
   }
-  // const locale = utils.isZhCN(pathname) ? 'zh-CN' : 'en-US';
-  const locale = 'zh-CN';
+  const locale = utils.isZhCN(pathname) ? 'zh-CN' : 'en-US';
   const pageDataPromise = typeof pageData === 'function'
     ? pageData()
     : (pageData[locale] || pageData.index[locale] || pageData.index)();
-  // const pageDataPromise = pageData.index || pageData;
   // 尝试读取 demo 文件夹
   // 由于 babel 只能在服务端运行，所以通过插件来完成
   const demosFetcher = nextProps.utils.get(data, [...pageDataPath, 'demo']);

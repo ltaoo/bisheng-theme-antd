@@ -4,7 +4,62 @@
 
 ## Usage
 
-其实更推荐的做法是将`bisheng-theme-antd`拷贝到本地`theme`文件夹。在使用`bisheng-theme-antd`（后面简称`theme`）前，有一些强制约定需要遵守。
+```bash
+yarn add bisheng-theme-antd bisheng-plugin-antd bisheng-plugin-react bisheng-plugin-toc -D
+```
+
+配置`bisheng.config.js`。
+
+```js
+const path = require('path');
+
+module.exports = {
+    source: {
+        components: './components',
+        docs: './docs',
+    },
+    output: './_site',
+    theme: 'bisheng-theme-antd',
+    themeConfig: {
+        categoryOrder: {
+            'Ant Design': 0,
+            原则: 1,
+            Principles: 1,
+            视觉: 2,
+            Visual: 2,
+            模式: 3,
+            Patterns: 3,
+            其他: 6,
+            Other: 6,
+            Components: 100,
+        },
+        // 控制左侧菜单
+        typeOrder: {
+            General: 0,
+            Layout: 1,
+            Navigation: 2,
+            'Data Entry': 3,
+            'Data Display': 4,
+            Feedback: 5,
+            Other: 6,
+            通用: 0,
+            布局: 1,
+            导航: 2,
+            数据录入: 3,
+            数据展示: 4,
+            反馈: 5,
+            其他: 6,
+        },
+    },
+    lessConfig: {
+        javascriptEnabled: true,
+    },
+}
+```
+
+对于`md`文件有一些强制约定需要遵守。
+
+> 其实更推荐的做法是将`bisheng-theme-antd`拷贝到本地`theme`文件夹使用。
 
 ### 目录结构
 
@@ -68,10 +123,6 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 
 `order`表示显示的顺序，`title`会显示在`Demo`和右侧。正文内容会根据当前语言显示。
 
-### 依赖
-
-- bisheng-plugin-antd
-- bisheng-plugin-react
 
 ## 一些说明
 
