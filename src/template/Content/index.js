@@ -9,6 +9,9 @@ function lower(obj) {
     return obj;
   }
   return Object.keys(obj).reduce((prev, key) => {
+    if (key.includes('zh-CN') || key.includes('en-US')) {
+      return obj[key];
+    }
     const res = prev;
     const newKey = key.toLowerCase();
     res[newKey] = lower(obj[key]);

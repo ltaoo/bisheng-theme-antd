@@ -1,6 +1,6 @@
 {
   "name": "@ltaoo/bisheng-theme-antd",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "lib/index.js",
   "repository": {
@@ -11,7 +11,8 @@
     "url": "https://github.com/ltaoo/bisheng-theme-antd/issues"
   },
   "scripts": {
-    "prepublish": "babel ./src --out-dir ./lib && shx cp -R src/static/* lib/static"
+    "prepublish": "babel ./src --out-dir ./lib && shx cp -R src/static/* lib/static",
+    "postpublish": "shx rm -rf lib"
   },
   "keywords": ["bisheng", "theme", "antd"],
   "author": "ltaoo",
