@@ -29,13 +29,18 @@ module.exports = {
   // 在 node 执行
   pick: {
     // 会在传给页面组件的 props 上增加 components 字段
-    components(markdownData) {
+    components(markdownData, bishengConfig) {
       const { filename } = markdownData.meta;
       if (!/^components/.test(filename) || /[/\\]demo$/.test(path.dirname(filename))) {
         return null;
       }
+      const components = ((bishengConfig || {}).source || {}).components || 'components';
+      const componentDir = path.join(components).replace(/\\/g, '/');
+      const regexp = new RegExp(`^${componentDir}`);
+      const newFilename = `components${filename.replace(regexp, '')}`;
       return {
         meta: markdownData.meta,
+        newFilename,
       };
     },
     // changelog(markdownData) {

@@ -1,0 +1,7 @@
+.*.swp
+.DS_Store
+.git
+*.log
+src
+.editorconfig
+.eslintrc
