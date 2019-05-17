@@ -4,13 +4,25 @@ import collect from 'bisheng/collect';
 import MainContent from './MainContent';
 import * as utils from '../utils';
 
+function lower(obj) {
+  if (Object.prototype.toString.call(obj) !== '[object Object]') {
+    return obj;
+  }
+  return Object.keys(obj).reduce((prev, key) => {
+    const res = prev;
+    const newKey = key.toLowerCase();
+    res[newKey] = lower(obj[key]);
+    return res;
+  }, {});
+}
 // 通过 collect 将 router、markdown 数据通过 props 传给页面组件
 export default collect(async (nextProps) => {
   const { pathname } = nextProps.location;
   const pageDataPath = pathname.replace('-cn', '').split('/');
   // get 方法来自 https://github.com/benjycui/exist.js
   // 会根据访问的路径结构，去获取相同的文件夹结构
-  const { data } = nextProps;
+  // 由于路径总是小写，而文件名可能大写，这里将文件名转为小写
+  const data = lower(nextProps.data);
   const pageData = nextProps.utils.get(data, pageDataPath);
   if (!pageData) {
     throw 404; // eslint-disable-line no-throw-literal
