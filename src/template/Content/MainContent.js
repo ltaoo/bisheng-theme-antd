@@ -12,6 +12,11 @@ import * as utils from '../utils';
 
 const { SubMenu } = Menu;
 
+/**
+ * 返回当前地址匹配的菜单项
+ * @param {Props} props - 注入了 route 参数的 props
+ * @param {string} props.params.children
+ */
 function getActiveMenuItem(props) {
   const { children } = props.params;
   return (
@@ -19,6 +24,19 @@ function getActiveMenuItem(props) {
   );
 }
 
+// 将 components、docs/react、changelog 视为 module，需要从这些 module 中读取 md 数据
+const MODULES = [
+  'components',
+  'docs/react',
+  'changelog',
+  'changlog-cn',
+];
+/**
+ * 
+ * @param {Props} props - 注入了 route 参数的 props
+ * @param {string} props.location.pathname - 当前访问地址的 pathname
+ * @return {Array<>}
+ */
 function getModuleData(props) {
   const { pathname } = props.location;
   const moduleName = /^\/?components/.test(pathname)
@@ -28,33 +46,39 @@ function getModuleData(props) {
         .filter(item => item)
         .slice(0, 2)
         .join('/');
-  const moduleData =
-    moduleName === 'components' ||
-    moduleName === 'docs/react'
-    // moduleName === 'changelog' ||
-    // moduleName === 'changelog-cn'
-      ? [
-        ...props.picked.components, 
-        // ...props.picked['docs/react'], 
-        // ...props.picked.changelog
+  const moduleData = MODULES.includes(moduleName) ? [
+        ...props.picked.components,
+        ...props.picked['docs/react'],
+        ...props.picked.changelog
       ]
       : props.picked[moduleName];
   const excludedSuffix = utils.isZhCN(props.location.pathname) ? 'en-US.md' : 'zh-CN.md';
   return moduleData.filter(({ meta }) => !meta.filename.endsWith(excludedSuffix));
 }
 
+/**
+ * 将文件名转换为 url pathname
+ * @param {string} filename - 文件名
+ * @return {string}
+ */
 function fileNameToPath(filename) {
   const snippets = filename.replace(/(\/index)?((\.zh-CN)|(\.en-US))?\.md$/i, '').split('/');
   return snippets[snippets.length - 1];
 }
 
+/**
+ * 获取侧边栏应该打开的菜单项 key 值
+ * @param {Props} nextProps
+ * @return {Array<MenuKey>}
+ */
 const getSideBarOpenKeys = nextProps => {
   const { themeConfig } = nextProps;
   const { pathname } = nextProps.location;
+  const { categoryOrder, typeOrder } = themeConfig;
   const locale = utils.isZhCN(pathname) ? 'zh-CN' : 'en-US';
   const moduleData = getModuleData(nextProps);
   const shouldOpenKeys = utils
-    .getMenuItems(moduleData, locale, themeConfig.categoryOrder, themeConfig.typeOrder)
+    .getMenuItems(moduleData, locale, categoryOrder, typeOrder)
     .map(m => (m.title && m.title[locale]) || m.title);
   return shouldOpenKeys;
 };

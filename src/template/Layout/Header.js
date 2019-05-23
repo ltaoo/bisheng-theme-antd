@@ -6,33 +6,11 @@ import classNames from 'classnames';
 import {
   Select, Menu, Row, Col, Icon, Popover, Input, Button,
 } from 'antd';
-// import docsearch from 'docsearch.js';
 
 import { antdVersion, logoImg, logoTitle, logoTitleImg } from '../../constants';
 import * as utils from '../utils';
 
 const { Option } = Select;
-
-// function initDocSearch(locale) {
-//   if (!docsearch) {
-//     return;
-//   }
-//   const lang = locale === 'zh-CN' ? 'cn' : 'en';
-//   docsearch({
-//     apiKey: '60ac2c1a7d26ab713757e4a081e133d0',
-//     indexName: 'ant_design',
-//     inputSelector: '#search-box input',
-//     algoliaOptions: { facetFilters: [`tags:${lang}`] },
-//     transformData(hits) {
-//       hits.forEach((hit) => {
-//         hit.url = hit.url.replace('ant.design', window.location.host); // eslint-disable-line
-//         hit.url = hit.url.replace('https:', window.location.protocol); // eslint-disable-line
-//       });
-//       return hits;
-//     },
-//     debug: false, // Set debug to true if you want to inspect the dropdown
-//   });
-// }
 
 export default class Header extends React.Component {
   static contextTypes = {
@@ -51,13 +29,6 @@ export default class Header extends React.Component {
   componentDidMount() {
     const { intl, router } = this.context;
     router.listen(this.handleHideMenu);
-    // const { searchInput } = this;
-    // document.addEventListener('keyup', (event) => {
-    //   if (event.keyCode === 83 && event.target === document.body) {
-    //     searchInput.focus();
-    //   }
-    // });
-    // initDocSearch(intl.locale);
   }
 
   onMenuVisibleChange = (visible)  => {
@@ -150,16 +121,6 @@ export default class Header extends React.Component {
         id="nav"
         key="nav"
       >
-        {/* <Menu.Item key="home" className="hide-in-home-page">
-          <Link to={utils.getLocalizedPathname('/', isZhCN)}>
-            <FormattedMessage id="app.header.menu.home" />
-          </Link>
-        </Menu.Item> */}
-        {/* <Menu.Item key="docs/spec">
-          <Link to={utils.getLocalizedPathname('/docs/spec/introduce', isZhCN)}>
-            <FormattedMessage id="app.header.menu.spec" />
-          </Link>
-        </Menu.Item> */}
         <Menu.Item key="docs/react">
           <Link to={utils.getLocalizedPathname('/docs/react/introduce', isZhCN)}>
             <FormattedMessage id="app.header.menu.components" />

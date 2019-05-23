@@ -11,7 +11,8 @@
     "url": "https://github.com/ltaoo/bisheng-theme-antd/issues"
   },
   "scripts": {
-    "prepublish": "babel ./src --out-dir ./lib && shx cp -R src/static/* lib/static",
+    "build": "babel ./src --out-dir ./lib && shx cp -R src/static/* lib/static",
+    "prepublish": "yarn build",
     "postpublish": "shx rm -rf lib"
   },
   "keywords": ["bisheng", "theme", "antd"],

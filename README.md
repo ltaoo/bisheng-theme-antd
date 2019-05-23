@@ -126,7 +126,8 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 
 ## 一些说明
 
-去掉了移动端支持；
+- 去掉了移动端支持
+- 将 `components`、`docs/react`、`changelog`存放`md`文件的文件夹定义为`module`
 
 ### Header
 
