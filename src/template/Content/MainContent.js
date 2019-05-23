@@ -4,11 +4,9 @@ import { Link } from 'bisheng/router';
 import { Row, Col, Menu, Icon, Affix } from 'antd';
 import classNames from 'classnames';
 import get from 'lodash/get';
-import MobileMenu from 'rc-drawer';
 
 import Article from './Article';
 import PrevAndNext from './PrevAndNext';
-// import Footer from '../Layout/Footer';
 import ComponentDoc from './ComponentDoc';
 import * as utils from '../utils';
 
@@ -298,7 +296,6 @@ export default class MainContent extends Component {
               )}
             </section>
             <PrevAndNext prev={prev} next={next} />
-            {/* <Footer /> */}
           </Col>
         </Row>
       </div>

@@ -126,6 +126,8 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 
 ## 一些说明
 
+去掉了移动端支持；
+
 ### Header
 
 网站顶部，对应组件`template/Layout/Header`。右侧菜单跳转路径是写死在这个文件内。

@@ -5,6 +5,11 @@ const contentTmpl = './template/Content/index';
 // const redirectTmpl = './template/Redirect';
 // const appShellTmpl = './template/AppShell';
 
+/**
+ * 生成 pick 函数，用来从 docs 筛选出指定文件夹内 markdown
+ * @param {string} module - docs 内的文件夹
+ * @return {function}
+ */
 function pickerGenerator(module) {
   const tester = new RegExp(`^docs/${module}`);
   return (markdownData) => {
@@ -63,8 +68,6 @@ module.exports = {
     'bisheng-plugin-toc?maxDepth=2&keepElem',
     'bisheng-plugin-antd?injectProvider',
     // 这个其实没什么意义，在按照规范的情况下只有 demo 文件夹内的需要渲染
-    // demo 文件夹的 md 实际会由 plugin-antd 调用 plugin-react 完成解析
-    'bisheng-plugin-react?lang=__react',
   ],
   // 路径配置，使用 react-router@3.0.0 的配置方式
   routes: {
@@ -72,50 +75,18 @@ module.exports = {
     component: './template/Layout/index',
     indexRoute: { component: homeTmpl },
     childRoutes: [
-      // {
-      //   path: 'app-shell',
-      //   component: appShellTmpl,
-      // },
       {
         path: 'index-cn',
         component: homeTmpl,
       },
-      // {
-      //   path: 'docs/pattern/:children',
-      //   component: redirectTmpl,
-      // },
       {
-        path: 'docs/react/:children',
+        path: 'docs/:children',
         component: contentTmpl,
       },
-      // {
-      //   path: 'changelog',
-      //   component: contentTmpl,
-      // },
-      // {
-      //   path: 'changelog-cn',
-      //   component: contentTmpl,
-      // },
       {
         path: 'components/:children',
         component: contentTmpl,
       },
-      // {
-      //   path: 'docs/spec/feature',
-      //   component: redirectTmpl,
-      // },
-      // {
-      //   path: 'docs/spec/feature-cn',
-      //   component: redirectTmpl,
-      // },
-      // {
-      //   path: 'docs/spec/:children',
-      //   component: contentTmpl,
-      // },
-      // {
-      //   path: 'docs/resource/:children',
-      //   component: redirectTmpl,
-      // },
     ],
   },
 };
