@@ -21,6 +21,8 @@ module.exports = {
     output: './_site',
     theme: 'bisheng-theme-antd',
     themeConfig: {
+        siteName: '生态圈',
+        logo: 'https://example.com/static/logo.png',
         categoryOrder: {
             'Ant Design': 0,
             原则: 1,

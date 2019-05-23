@@ -85,6 +85,7 @@ export default class Header extends React.Component {
     const { menuVisible } = this.state;
     const { location, themeConfig } = this.props;
 
+    const { siteName, logo: logoImg } = themeConfig;
     const menuMode = 'horizontal';
     const module = location.pathname
       .replace(/(^\/|\/$)/g, '')
@@ -140,23 +141,11 @@ export default class Header extends React.Component {
                 alt="logo"
                 src={logoImg}
               />
-              <img
-                alt={logoTitle}
-                src={logoTitleImg}
-              />
+              <span>{siteName}</span>
               {/* <Santa /> */}
             </Link>
           </Col>
           <Col xxl={20} xl={19} lg={19} md={19} sm={0} xs={0}>
-            {/* <div id="search-box">
-              <Icon type="search" />
-              <Input
-                ref={(ref) => {
-                  this.searchInput = ref;
-                }}
-                placeholder={searchPlaceholder}
-              />
-            </div> */}
             {menu}
           </Col>
         </Row>

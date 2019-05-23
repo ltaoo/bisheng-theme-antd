@@ -50,14 +50,14 @@ module.exports = {
         },
       };
     },
-    // changelog(markdownData) {
-    //   if (/CHANGELOG/.test(markdownData.meta.filename)) {
-    //     return {
-    //       meta: markdownData.meta,
-    //     };
-    //   }
-    //   return null;
-    // },
+    changelog(markdownData) {
+      if (/CHANGELOG/.test(markdownData.meta.filename)) {
+        return {
+          meta: markdownData.meta,
+        };
+      }
+      return null;
+    },
     // 'docs/pattern': pickerGenerator('pattern'),
     'docs/react': pickerGenerator('react'),
     // 'docs/resource': pickerGenerator('resource'),
@@ -80,7 +80,7 @@ module.exports = {
         component: homeTmpl,
       },
       {
-        path: 'docs/:children',
+        path: 'docs/react/:children',
         component: contentTmpl,
       },
       {
