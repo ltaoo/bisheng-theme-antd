@@ -64,7 +64,7 @@
     "intersection-observer": "^0.7.0",
     "jsonml.js": "^0.1.0",
     "lz-string": "^1.4.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^16.8.6",
     "react-copy-to-clipboard": "^5.0.1",
     "react-document-title": "^2.0.3",
